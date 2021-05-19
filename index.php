@@ -64,20 +64,43 @@ conosciamo nella documentazione) che:
 Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato” -->
 
     <?php
-    // Name
     $name = $_GET['name'];
     $mail = $_GET['mail'];
     $age = $_GET['age'];
 
     if ((empty($name)) || (empty($mail)) || (empty($age))) {
-        echo 'Errore, nessun parametro';
-    } else if ((strlen($name) > 3) === false || (strpos($mail, '@') === false || strpos($mail, '.') === false || (is_numeric($age))  === false)) {
+        echo 'Errore, non ci sono tutti i parametri';
+    } else if ((strlen($name) > 3) === false || (strpos($mail, '@') === false || strpos($mail, '.') === false || (!is_numeric($age)))) {
         echo 'Accesso negato';
     } else {
         echo 'Accesso riuscito';
     }
-
     ?>
+
+    <!-- PHP Snack 3 Bonus (solo come bonus e solo se completati i due precedenti)
+Creare un array con 15 numeri casuali, tenendo conto che l’array non dovrà contenere lo stesso numero più di una volta
+  -->
+
+    <?php
+    // Setup
+    $numbers = [];
+    $totItems = 15;
+    $min = 1;
+    $max = 50;
+
+    //Gen
+    while (count($numbers) < $totItems) {
+        $number = rand($min, $max);
+
+        // Check unique
+        if (!in_array($number, $numbers)) {
+            $numbers[] = $number;
+        }
+    }
+
+    var_dump($numbers);
+    ?>
+
 
 
 </body>
